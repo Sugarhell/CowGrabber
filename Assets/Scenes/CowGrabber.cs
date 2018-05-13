@@ -23,28 +23,36 @@ public class CowGrabber : MonoBehaviour {
 
     private void NewMethod()
     {
-        if (!PullCows)
-        {
-            return;
-        }
+
+
         foreach (Collider2D c in cowsColliders)
         {
             if (c != null && c.gameObject.CompareTag("Cow"))
             {
 
+                if (!PullCows)
+                {
+                    c.GetComponent<ICow>().EndInteraction();
+                    return;
+                }
                 Vector3 tmp = transform.position - c.transform.position;
                 Vector3 direction = (c.transform.position - transform.position).normalized;
                 float tmp1 = Vector3.Dot(direction, -transform.up);
                 if (tmp1 > 0.8)
                 {
-
                     c.GetComponent<ICow>().Interaction(this.transform.GetChild(0));
-                    
 
                 }
+                else
+                {
+                    c.GetComponent<ICow>().EndInteraction();
+                }
+
 
             }
 
         }
     }
+
+
 }

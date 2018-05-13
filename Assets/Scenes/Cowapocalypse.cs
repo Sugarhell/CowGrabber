@@ -26,8 +26,15 @@ public class Cowapocalypse : MonoBehaviour, ICow {
 
     public void Interaction(Transform target)
     {
+        ispulled = true;
         cowRigidbody.gravityScale = 0;
         Vector3 targetDirection = target.transform.position - transform.position;
         transform.position += targetDirection * 4 * Time.deltaTime;
+    }
+
+    public void EndInteraction()
+    {
+        ispulled = false;
+        cowRigidbody.gravityScale = 1;
     }
 }

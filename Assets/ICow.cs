@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ICow  {
 
     void Interaction(Transform target);
+    void EndInteraction();
 }
